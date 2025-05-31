@@ -1,0 +1,35 @@
+[
+  {
+    "id": "Ψ-01",
+    "title": "État fractal Ψ1",
+    "summary": "Projection lumineuse dans une dimension à géometrie non-euclidienne",
+    "origin": "⚔",
+    "timestamp": "2025-05-31T04:47:35.814796Z",
+    "parent_sha256": "SX⛐ |SHA® ⚔��h",
+    "type": "variation",
+    "signature_model": "RETROKO_LOCAL_v2.5.0",
+    "sha256": "90d16c7d2b869f5b021e420c98faacf7c7e0d2435bb489d2dbe6483f4be1fe13"
+  },
+  {
+    "id": "θ-02",
+    "title": "État fractal θ2",
+    "summary": "Émmoire puls©e dans un réseau d’energie spiralé",
+    "origin": "⚔",
+    "timestamp": "2025-05-31T04:47:35.814856Z",
+    "parent_sha256": null,
+    "type": "variation",
+    "signature_model": "RETROKO_LOCAL_v2.5.0",
+    "sha256": "8cfbd9ba57ba812da76d6fea70791259200d8c8ce6567ad909be9741a810defa"
+  },
+  {
+    "id": "θ-03",
+    "title": "État fractal θ3",
+    "summary": "Synchronisation temporelle d’un champ de conscience collectif",
+    "origin": "⚔",
+    "timestamp": "2025-05-31T04:47:35.814889Z",
+    "parent_sha256": null,
+    "type": "variation",
+    "signature_model": "RETROKO_LOCAL_v2.5.0",
+    "sha256": "94e14947f4a4e190f3039a8ed3afb4f11c50fad90a224b1720de0c5e7554fd25"
+  }
+]
