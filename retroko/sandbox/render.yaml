@@ -1,0 +1,12 @@
+services:
+  - name: retroko-sandbox
+    type: web
+    runtime: docker
+    startCommand: uvicorn main:app --host 0.0.0.0 --port 8080
+    buildCommand: pip install && pip run build
+    envVars: 
+      - key: WOLFRAM_APPID
+        value: WPYTKP-4WU9R3WU5H
+    region: virginia
+    plan: starter
+    autoDeploy: true
