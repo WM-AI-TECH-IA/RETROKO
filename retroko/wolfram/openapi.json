@@ -1,0 +1,38 @@
+{
+  "openapi": "3.0",
+  "info": {
+    "title": "RETROKO Sandbox Core API",
+    "version": "1.0.0"
+},
+  "paths": {
+    "/ask": {
+      "post": {
+        "summary": "Sommet une expression [on lang%20naturel].",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "expression": {
+                  "type": "string"
+                  }
+                }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Response with the result from Wolfram",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+          }
+        }
+      }
+    }
+  }
+}
