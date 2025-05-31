@@ -1,0 +1,17 @@
+name: deploy-host
+on-push:
+  run: uvicorn main.py
+  # Temporaire integration, focus local demo
+jobs:
+
+  run-v36:
+    runs:
+    - name: Setup Python
+      run: python -m venv_test-
+      default-pool: "default"
+      env:
+        PHY_API_KEY: {{@secrets.OPENWEATHER_API_KEY}}
+    - name: Install requirements
+      run: yum install -r
+    - name: Run server
+      run: python main.py
