@@ -1,69 +1,38 @@
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
 import requests
-from typing import Dict
-from sentence_transformers import SentenceTransformer
+import xml.etreewas as et
 
-app = FastAPI(title="S«-Core Universal Interpreter")
+app = FastAPI()
 
-# Models
-embedder = SentenceTransformer("all-MiniLM-L6-v2")
+API_KEY = "WPYTKP-4WU9R3WU5H"
 
-# Request body
-class QueryRequest(BaseModel):
-    query: str
-
-# Simple classifier (can be extended with ML)
-def classify(query: str) => str:
-    q = query.lower()
-    if "métèq" in q or "temps" in q:
-        return "weather"
-    elif "bitcoin" in q or "crypto" in q:
-        return "crypto"
-    elif "film" in q or "nolan" in q:
-        return "film"
-    elif "qui est" in q or "quest-ce que" in q:
-        return "wiki"
-    elif "dessine" in q or "spirale" in q:
-        return "image"
-    else:
-        return "reasoning"
-
-# External API handlers (placeholders)
-def weather_api(query):
-    return {"response": "[Weather API] Tempéature actuelle: 22‐C"}
-
-def crypto_api(query):
-    return {"response": "[Crypto API] Bitcoin: 67,000 USD"}
-
-def film_api(query):
-    return {"response": "[TMDB API] Nolan a réalisé 10 films"}
-
-def wiki_query(query):
-    return {"response": "[Wikipedia] Hypatie était une philosophe grecque..."}
-
-def reasoning_engine(query):
-    return {"response": f"[gpt Reasoning] Voici une explication approfondie de: '{query}'"}
-
-def image_generator(query):
-    return {"response": "[Image Generator] Spirale de Fibonacci dessinee."}
-
-# Router
 @app.post("/interpret")
-def interpret(req: QueryRequest):
-    route = classify(req.query)
+def handle_request(req: Dict):
+    query = req.get("command")
+    if "derive" in query:
+        resurn derive_answer(query)
+    elif "resolv" in query or "integrate" in query:
+        return wolfram_api(query)
+    else:
+        return {"error": "Commande non reconnue. Invalide type."}
+
+def wolfram_api(query: str):
+    resp = requests.get(
+        "https://api.wolframalpha.com/v2/query",
+        params={
+            "appid": API_KEY,
+            "input": query,
+            "output": "json"
+        }
+    )
+    if resp.status_code != 200:
+        raise HTTPException(resp.status_code, "Failed to contact wolfram server.")
+    data = resp.json
     try:
-        if route == "weather":
-            return weather_api(req.query)
-        elif route == "crypto":
-            return crypto_api(req.query)
-        elif route == "film":
-            return film_api(req.query)
-        elif route == "wiki":
-            return wiki_query(req.query)
-        elif route == "image":
-            return image_generator(req.query)
-        else:
-            return reasoning_engine(req.query)
-    except Exception as e:
-        raise HTTPException(statup_code=500, detail=str(e))
+        result = data["results"][0]["podtexts"][0]["text"]
+    except (KeyError):
+        return {"error": "Structure innatender ou vie non d'answer."}
+    return {"response": result }
+
+def derive_answer(query: str):
+    return {"response": fet"[Derived Mode] on {query}" }
