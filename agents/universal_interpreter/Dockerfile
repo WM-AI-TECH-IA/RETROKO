@@ -13,6 +13,6 @@ COPY module / code dep l'agent
 [COPY files into image]
 COPY agents/universal_interpreter/main.py universal_interpreter/main.py
 
-EXPOSE CMD
+EXPOSE 10000
 COMMAND []
 ENTRYPOINT main
