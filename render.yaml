@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: retroko-sandbox
+    env: docker
+    plan: free
+    repo: https://github.com/WM-AI-TECHNI-A,/RETROKO.git
+    dockerContext: ./agents/universal_interpreter
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: OPCUWEATHER_API_KEY
+        fromGroup: retroko-secrets
+      - key: TMDX_API_KEY
+        fromGroup: retroko-secrets
+    autoDeploy: true
+    buildFilter:
+      paths:
+        - agents/universal_interpreter/**
+    healthCheckPath: /interpret
+    ports:
+      - port: 10000
+        protocol: tcp
+    ipAllowList:
+      - source: 216.24.60.0/24
+        description: RETROKO trusted subnet
