@@ -1,0 +1,10 @@
+services:
+  - name: retroko-sandbox
+    build_comand: docker build
+    runtime: docker
+    start_command: docker run -p 8080: 8080 retroko-sandbox
+    env_vars:
+      - name: WOLFRAM_APPID
+        value: "YOUR_APP_ID_HERE"
+    type: web
+    port: 8080
