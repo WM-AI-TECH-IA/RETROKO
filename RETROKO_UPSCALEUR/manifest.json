@@ -1,0 +1,16 @@
+{
+  "timestamp": "2025-06-01T02:50:43Z",
+  "version": "1.0",
+  "system_core": "RETROKO_UPSCALEUR_EVOLUTIF REAL",
+  "law_modes": ["fixed", "al%C3%A9atoire", "dynamique"],
+  "entr%C3%A8es": ["image", "texte", "registre", "output"],
+  "m%C3%A8triques": ["entropie", "correlation", "fractal_complexity"],
+  "files": [
+    "law_generator.py",
+    "source_handler.py",
+    "metric_engine.py",
+    "upscale_engine.py",
+    "explorer.py",
+    "memory_export.py"
+  ]
+}
