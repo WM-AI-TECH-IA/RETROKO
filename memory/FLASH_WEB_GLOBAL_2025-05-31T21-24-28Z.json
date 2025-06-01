@@ -1,0 +1,10 @@
+{
+  "timestamp": "2025-05-31T21:24:28Z",
+  "flash_intent": [
+    { "url": "https://www.bbc.com/news", "summary": "Couverture compl%C3%A9te des evenèments mondiaux, with une attention particuli%C3%A9e sur les d%C3%A9veloppements politiques"},
+    { "url": "https://www.techlunch.com", "summary": "Myses 'aujours heurs int'unes banne technologique, des startups et des recherches finances"},
+    { "url": "https://www.sciencenews.org", "summary": "Articles sur les derni%C3%A9es decouvertes scientifiques: santáe, enfwerement, espace"},
+    { "url": "https://www.bbc.com/culture", "summary": "Analyses approfondies des arts, du cinema, de la littêtre et des tendances culturelles"}
+  ],
+  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}
