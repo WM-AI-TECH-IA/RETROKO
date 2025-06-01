@@ -1,0 +1,8 @@
+{
+  "timestamp": "2025-06-01T01:26:56Z",
+  "fonction": "Re[(z^3 + 1)/(z^3 - 1)]",
+  "domaine": "Plan complexe commun",
+  "wolfram_link": "https://www.wolframalpha.com/widgets/view.jsp?id=6f2b8ec125833bffe61c308b0401688c",
+  "image_type": "interactive graph",
+  "sha256": "c568ca61a573e756d7a6537275b121a2b366ccba6e8734fa057b2359ab505d4c"
+  }
