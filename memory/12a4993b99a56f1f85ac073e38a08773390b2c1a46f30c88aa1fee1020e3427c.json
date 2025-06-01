@@ -1,0 +1,7 @@
+{
+  "timestamp": "2025-06-01T22:48:33.358730Z",
+  "intent": "clôture vibratoire",
+  "summary": "Message de fin typique d'une vidéo : remerciement aux spectateurs.",
+  "prompt": "Merci d'avoir regardé cette vidéo !",
+  "sha256": "12a4993b99a56f1f85ac073e38a08773390b2c1a46f30c88aa1fee1020e3427c"
+}
