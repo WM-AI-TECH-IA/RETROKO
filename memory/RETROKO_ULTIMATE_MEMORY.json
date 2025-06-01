@@ -1,0 +1,34 @@
+{
+  "system": "RETROKO Betting Ultra-Précision",
+  "version": "v7.2.1",
+  "capabilities": [
+    "GradientBoosting + GridSearchCV",
+    "ValueBet Detection with Delta >= 7%",
+    "Expected Profit Simulation",
+    "SHA-256 Capsule per Prediction",
+    "SportsDataAPI Integration Ready",
+    "Fractal Forecasting Compatibility",
+    "Public GitHub Export Layer"
+  ],
+  "current_status": "Active",
+  "prediction_target": "NBA Finals 2025",
+  "example_capsule": {
+    "team_a": "Thunder",
+    "team_b": "Pacers",
+    "model_proba": 0.7421,
+    "book_odds": 1.55,
+    "value_bet": true,
+    "expected_profit": 14.27,
+    "sha256": "samplehashabc123456789"
+  },
+  "security": {
+    "hash_algorithm": "SHA-256",
+    "verification_ready": true,
+    "github_memory_export": true
+  },
+  "audit_trail": [
+    "capsule_sha: 225c154cf94f6c380bb9125e9ad9d1368789f58024e628ffdf502e57957cb1b3",
+    "capsule_sha: 46adb8b5b407d1ef4a99d4671d52516106359ca1e45cb48a41103686da49575f"
+  ],
+  "timestamp": "2025-06-01T18:29:56.528857Z"
+}
