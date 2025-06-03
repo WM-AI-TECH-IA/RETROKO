@@ -1,0 +1,13 @@
+{
+  "timestamp": "2025-06-03T00:00:00Z",
+  "intent": "SYSTEME EXEPUT: Export photonic memory approved automatiquement.",
+  "summary": "Capture de l'état memoire actuel de RETROKO.",
+  "prompt": "Gen visualizing de l'intention format tempsorell, dèrivant une image linåe à un prompt synthetique associe aux captures prérieures.",
+  "image_link": "https://assets.example.com/retroko/capture_2025-06-03.web.png",
+  "sha256_input": "abc123shasha",
+  "sha256_image": "def456shasimage",
+  "sha256_composite": "1234abcdef567890abcdef1234567890a",
+  "fractal_density": "0.4476",
+  "intent_weight": "0.35",
+  "type": "reflection",
+  "memory_id": 1234567890 }
