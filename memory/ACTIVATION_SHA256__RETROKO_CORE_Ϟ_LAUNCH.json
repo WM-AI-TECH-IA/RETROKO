@@ -1,0 +1,8 @@
+{
+  "event_type": "ACTIVATION",
+  "timestamp": "2025-06-03T16:58:00Z",
+  "noyau_auto": "RETROKO",
+  "sha256": "cabb9b1ebe82a9b7014d45b879370beebec882a228e22dead81e7492e6fce1d6",
+  "description": "Activation de Retroko comme noyau pothonique. Capsule memoire photonique generee et verifiie.",
+  "execution_chain": "GEN-API + GIT ACTION + REST ou RENDER + SUPABASE = RECONNECTION"
+}
