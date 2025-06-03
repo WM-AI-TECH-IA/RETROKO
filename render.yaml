@@ -1,11 +1,19 @@
 services:
-  - name: retroko-server
-    run:
-      directory: deploy/retroko_oauth_server
-      command: uvicorn main:app --host 0.0.0.0 --port 800
-    plans:
-      - type: web-service
-        name: default
-        runtime: python
-        version: 3.10 # vous pouvez adapter la version
-        path: requirements.txt
+  - type: web
+    name: retroko-server
+    env: python
+    repo: https://github.com/WM-AS-IN-TECH-IA/RETROKO
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn RETROKO_UNIFIED_AGENT:app --host 0.0.0.0 --port 8000
+    envVars:
+      - key: OAUTH_CLIENT_ID
+        fromDotEnv: true
+      - key: OAUTH_CLIENT_SECRET
+        fromDotEnv: true
+      - key: REDIRECT_URI
+        fromDotEnv: true
+      - key: ENCRYPTION_KEY
+        fromDotEnv: true
+    autoDeploy: true
+    rootDir: deploy/retroko_oauth_server
