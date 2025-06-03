@@ -3,6 +3,6 @@ services:
     name: retroko-secure-api
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn main:app --host=0.0.0.0 --port=1000
+    startCommand: python -m uvicorn main:app --host=0.0.0.0 --port=1000
     plan: free
     branch: main
