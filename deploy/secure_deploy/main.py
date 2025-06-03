@@ -1,0 +1,1 @@
+from deploy.retroko_fastapi_server import app
