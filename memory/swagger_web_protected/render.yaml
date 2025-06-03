@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: swagger-web-protege
+    env: python
+    repo: https://github.com/WM-AI-TECH-IA/RETROKO
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port 8000
+    autoDeploy: true
+    rootDir: memory/swagger_web_protected
