@@ -1,0 +1,64 @@
+openapi: 3.1.0
+info:
+  title: RETROKO Terminal API
+  description: API seécurisé pourant à GPT d'éxécuter des shell entres via un terminal fractal.
+  version: "ï1.0"
+servers:
+  - url: https://retroko-daemon.onrender.com
+paths:
+  /terminal/exec:
+    post:
+      summary: Exécute une commande shell autorisée sur le système RETROKO.
+      operationId: run_terminal_command
+      security:
+        - bearerAuth:
+      requestBody:
+        required: true
+        content:
+          application/json
+          schema:
+            $ref: "#/components/schemas/TerminalRequest"
+      responses:
+        "200":
+          description: Resultat de la commande exécutée
+          content:
+            application/json
+              schema:
+                $ref: "#/components/schemas/TerminalResponse"
+        "400":
+          description:: Erreur lors de l'exécition de la commande 
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    TerminalRequest:
+      type: object
+      properties:
+        command:
+          type: string
+          description: Commande shell autorisée a àexécuter
+      required:
+        - command
+    TerminalResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: ok
+        output:
+          type: string
+          example: "total 4.0K\n
+-rw-r--- 2 root root ..."
+    ErrorResponse:
+      type: object
+      properties:
+        detail:
+          type: string
+          example: "Commande interdite ou échec d'exècution."
