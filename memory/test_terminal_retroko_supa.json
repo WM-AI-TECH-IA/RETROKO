@@ -1,0 +1,7 @@
+{
+  "event": "Test RETROKO - Httpbin",
+  "terminal_endpoint": "https://httpbin.org/get",
+  "status": "operationnel",
+  "supabase_log": "Echec d'client ResponseError sur ChatSync",
+  "timestamp": "2025-06-03T16:00Z"
+}
