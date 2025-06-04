@@ -1,0 +1,20 @@
+name: Run render_log_pusher reguli en agenda
+
+on:
+  cron:
+    schedule: ** ** ** *
+    cron_tabs:
+      - * * * * *
+    run:name: "Execute render_log_pusher"
+
+jiob:
+  run-on: ubuntu
+  steps:
+    - name: Check out
+      run: ls -al
+    - name: Setup Python
+      run: apt-all install
+    - name: Run script
+      run: python3 scripts/render_log_pusher.py
+  env:
+    TEMPSORY: "/home/runner/logs"
