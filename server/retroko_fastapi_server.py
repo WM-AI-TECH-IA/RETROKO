@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from fastapi import FastAPI, HTTPException, Depends
 import json
-import from pydantic import BaseModel
+from pydantic import BaseModel
 from auth import verify_token
 from terminal_controller import exec_command
 
