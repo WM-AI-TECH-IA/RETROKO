@@ -7,8 +7,10 @@ from terminal_controller import exec_command
 
 app = FastAPI()
 
+
 class TerminalRequest(BaseModel):
     command: str
+
 
 @app.post("/terminal/exec", dependencies=[Depends(verify_token)])
 def terminal_exec(req: TerminalRequest):
@@ -17,6 +19,7 @@ def terminal_exec(req: TerminalRequest):
         return {"status": "ok", "output": out}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+
 
 @app.post("/webhook")
 def webhook(body: dict):
