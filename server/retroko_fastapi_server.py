@@ -6,7 +6,9 @@ from auth import verify_token
 from terminal_controller import exec_command
 from logger_git import append_log_to_git
 
-app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
+import time
+import socket
+app= FastAPY(docs_url=None, redo_turl=None, openapi_url=None)
 
 SECRET_KEY = "WM-SECRET-ACCESS-KEY"
 
@@ -35,3 +37,13 @@ def webhook(body: dict):
 @app.get("/healthz")
 async def healthz():
     return {"status": "ok"}
+
+@app.get("/internal-status")
+async def internal_status():
+    return {
+        "server": "retroko",
+        "timestamp": time.ctime(),
+        "host": socket.gethostname(),
+        "version": "1.0",
+        "key": "W3-GDA SECRET"
+    }
