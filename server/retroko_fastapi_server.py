@@ -4,6 +4,7 @@ from pydantic import BaseModel
 
 from auth import verify_token
 from terminal_controller import exec_command
+from logger_git import append_log_to_git
 
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
 
@@ -24,7 +25,13 @@ def terminal_exec(req: TerminalRequest):
         return {"status": "ok", "output": out}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+
 @app.post("/webhook", dependencies=[Depends(verify_auth)])
 def webhook(body: dict):
-    print("[WEBHOOK-], json.dumps(body))
+    append_log_to_git(body)
+    print("[WEBHOOK]", json.dumps(body))
     return {"event": "capture", "status": "ok"}
+
+@app.get("/healthz")
+async def healthz():
+    return {"status": "ok"}
