@@ -4,8 +4,9 @@ services:
     env: python
     repo: https://github.com/WM-AS-IN-TECH-IA/RETROKO
     branch: main
+    rootDir: server                            # ← ici
     buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn RETROKO_UNIFIED_AGENT:app --host 0.0.0.0 --port 8000
+    startCommand: uvicorn retroko_fastapi_server:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: OAUTH_CLIENT_ID
         fromDotEnv: true
@@ -16,4 +17,4 @@ services:
       - key: ENCRYPTION_KEY
         fromDotEnv: true
     autoDeploy: true
-    rootDir: deploy/retroko_oauth_server
+
