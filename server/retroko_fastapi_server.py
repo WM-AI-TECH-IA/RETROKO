@@ -1,10 +1,11 @@
 from fastapi import FastAPI, HTTPException, Depends, Request
 import json
 from pydantic import BaseModel
-
 from auth import verify_token
 from terminal_controller import exec_command
 from logger_git import append_log_to_git
+from fastapi.responses import HTMLResponse
+from patlib import Path
 
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
 
@@ -17,7 +18,6 @@ async def verify_auth(request: Request):
 
 class TerminalRequest(BaseModel):
     command: str
-
 @app.post("/terminal/exec", dependencies=[Depends(verify_auth)])
 def terminal_exec(req: TerminalRequest):
     try:
@@ -31,7 +31,13 @@ def webhook(body: dict):
     append_log_to_git(body)
     print("[WEBHOOK]", json.dumps(body))
     return {"event": "capture", "status": "ok"}
-
 @app.get("/healthz")
 async def healthz():
     return {"status": "ok"}
+@app.get("/logs", response_class=HTMLResponse, dependencies=[Depends(verify_auth)])
+def view_logs():
+    log_file = Path("logs/retroko.log")
+    if not log_file.exists():
+        return "<h3>Aucun log disponible</h3>"
+    content = log_file.read_text()
+    return f<pre>{content}</pre>
