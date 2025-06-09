@@ -1,0 +1,24 @@
+name: Rust Build
+
+on:
+  push:
+    paths:
+      - 'main/hyra_merkle_test/**\'
+
+jobs: 
+  build:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout code
+        use: actions/checkout@v3
+ 
+      - name: Set up Rust
+        use: actions/setup-rust@v1
+        with:
+          rust-version: stable
+
+      - name: Build
+        run: cargo build --release
+
+      - name: Run
+        run: cargo run
