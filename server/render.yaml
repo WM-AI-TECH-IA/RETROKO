@@ -1,19 +1,20 @@
 services:
   - type: web
-    name: retroko-server
+    name: core
     env: python
-    repo: https://github.com/WM-AS-IN-TECH-IA/RETROKO
-    branch: main
-    rootDir: server                            # ← ici
     buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn retroko_fastapi_server:app --host 0.0.0.0 --port $PORT
+    startCommand: uvicorn core.main:app --host 0.0.0.0 --port 8000
+    plan: free
     envVars:
-      - key: OAUTH_CLIENT_ID
-        fromDotEnv: true
-      - key: OAUTH_CLIENT_SECRET
-        fromDotEnv: true
-      - key: REDIRECT_URI
-        fromDotEnv: true
-      - key: ENCRYPTION_KEY
-        fromDotEnv: true
-    autoDeploy: true
+      - key: ENV
+        value: production
+
+  - type: web
+    name: shell-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn shell.main:app --host 0.0.0.0 --port 8001
+    plan: free
+    envVars:
+      - key: ENV
+        value: production
