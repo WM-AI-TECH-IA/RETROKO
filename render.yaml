@@ -2,12 +2,12 @@ services:
   - type: web
     name: retroko-server
     env: python
-    repo: https://github.com/WM-AS-IN-TECH-IA/RETROKO
+    repo: https://github.com/WM-AI-TECH-IA/RETROKO
     branch: main
-    rootDir: server                            # ← ici
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn retroko_fastapi_server:app --host 0.0.0.0 --port $PORT
-    envVars:
+    rootDir: server
+    buildCommand: pip install -r server/requirements.txt
+    startCommand: uvicorn retroko_fastapi_server:app --host 0.0.0.0 -port $PORT
+    envVars: 
       - key: OAUTH_CLIENT_ID
         fromDotEnv: true
       - key: OAUTH_CLIENT_SECRET
@@ -17,4 +17,3 @@ services:
       - key: ENCRYPTION_KEY
         fromDotEnv: true
     autoDeploy: true
-
