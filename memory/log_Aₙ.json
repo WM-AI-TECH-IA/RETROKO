@@ -1,0 +1,13 @@
+{
+  "identifiant": "log_Aß",
+  "type": "introspection-cognitive",
+  "etat_temps": "2025-06-09T15:00:00",
+  "surgen": "auto-test de l'URL Render via canal render.yaml",
+  "statut_server": "UNKNOWN",
+  "trace": {
+    "service_name": "retroko-server",
+    "render_path": "server/render.yaml",
+    "authorization_key": "WM-SECRET-ACCESS-KEY",
+    "test_lancer": "symbolique usur tenpative publique de service"
+  }
+}
