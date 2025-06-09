@@ -1,14 +1,14 @@
-from pydantic import BaseModel
 from fastapi import FastAPI, HTTPException, Depends
-import json
 from pydantic import BaseModel
+import json
+
 from auth import verify_token
 from terminal_controller import exec_command
 
 app = FastAPI()
 
 class TerminalRequest(BaseModel):
-    command: string
+    command: str
 
 @app.post("/terminal/exec", dependencies=[Depends(verify_token)])
 def terminal_exec(req: TerminalRequest):
@@ -20,5 +20,5 @@ def terminal_exec(req: TerminalRequest):
 
 @app.post("/webhook")
 def webhook(body: dict):
-    print("[WEBHOOK]", jcon.dump(body))
+    print("[WEBHOOK]", json.dumps(body))
     return {"event": "capture", "status": "ok"}
