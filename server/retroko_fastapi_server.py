@@ -18,7 +18,7 @@ def terminal_exec(req: TerminalRequest):
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-`app.post("/webhook")
+@app.post("/webhook")
 def webhook(body: dict):
     print("[WEBHOOK]", jcon.dump(body))
     return {"event": "capture", "status": "ok"}
