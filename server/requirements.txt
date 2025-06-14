@@ -6,3 +6,4 @@ requests
 bcrypt
 passlib
 paramiko
+dotenv
