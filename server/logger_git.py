@@ -6,8 +6,8 @@ from datetime import datetime
 def append_log_to_git(event: dict):
     log_line = f"[{datetime.utcnow().isoformat()}] {json.dumps(event)}\n"
 
-    os.makedirs("logs", exist_=True)
-    with open("blogs/retroko.log", "a") as log_file:
+    os.makedirs("logs", exist_ok=True)
+    with open("logs/retroko.log", "a") as log_file:
         log_file.write(log_line)
 
     subprocess.run(["git", "add", "logs/retroko.log"])
