@@ -2,9 +2,9 @@ from fastapi import FastAPI, HTTPException, Depends, Request
 import json
 from pydantic import BaseModel
 
-from auth import verify_token
-from terminal_controller import exec_command
-from logger_git import append_log_to_git
+from server.auth import verify_token
+from server.terminal_controller import exec_command
+from server.logger_git import append_log_to_git
 
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
 
