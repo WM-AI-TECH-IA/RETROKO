@@ -1,20 +1,34 @@
-name: Run render_log_pusher reguli en agenda
+name: Check Render log script
 
 on:
-  cron:
-    schedule: ** ** ** *
-    cron_tabs:
-      - * * * * *
-    run:name: "Execute render_log_pusher"
+  pull_request:
+    paths:
+      - '.github/workflows/push_logs.yml'
+      - 'scripts/render_log_pusher.py'
+  workflow_dispatch:
 
-jiob:
-  run-on: ubuntu
-  steps:
-    - name: Check out
-      run: ls -al
-    - name: Setup Python
-      run: apt-all install
-    - name: Run script
-      run: python3 scripts/render_log_pusher.py
-  env:
-    TEMPSORY: "/home/runner/logs"
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Check log generator syntax
+        run: python3 -I -m py_compile scripts/render_log_pusher.py
+
+      - name: Exercise the generator in a temporary directory
+        working-directory: ${{ runner.temp }}
+        run: |
+          python3 -I "$GITHUB_WORKSPACE/scripts/render_log_pusher.py"
+          python3 -I - <<'PY'
+          from pathlib import Path
+
+          logs = list(Path("logs/render").glob("*.log"))
+          assert len(logs) == 1
+          assert logs[0].read_text(encoding="utf-8") == "==> RENDER  LOG SIMULED... "
+          PY

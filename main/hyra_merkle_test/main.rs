@@ -1,16 +1,18 @@
-use sha2::{Sha256, Digest};
+use serde_json::json;
+use sha2::{Digest, Sha256};
 
-function hash_pair(left: &str, right: &str) -> String {
-    let mut_hasher = Sha256::new();
-    mut_hasher.update(left.as_bytes());
-    mut_hasher.update(right.as_bytes());
-    format("%x", mut_hasher.finalize())
+fn hash_pair(left: &str, right: &str) -> String {
+    let mut hasher = Sha256::new();
+    hasher.update(left.as_bytes());
+    hasher.update(right.as_bytes());
+    format!("{:x}", hasher.finalize())
 }
 
-function main() {
-    let a = "Archive A❤";
-    let b = "Données de compression 2048";
-
-    let hashed = hash_pair(a, b);
-    println!(r#"{\"input\": [\"/\", \"/\"], \"hash\": \"/\""}",  a, b, hashed);
+fn main() {
+    let left = "Archive A❤";
+    let right = "Données de compression 2048";
+    println!(
+        "{}",
+        json!({"input": [left, right], "hash": hash_pair(left, right)})
+    );
 }

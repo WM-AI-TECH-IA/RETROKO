@@ -2,23 +2,47 @@ name: Rust Build
 
 on:
   push:
+    branches: [main]
     paths:
-      - 'main/hyra_merkle_test/**\'
+      - 'main/hyra_merkle_test/**'
+      - '.github/workflows/build.yml'
+  pull_request:
+    paths:
+      - 'main/hyra_merkle_test/**'
+      - '.github/workflows/build.yml'
+  workflow_dispatch:
 
-jobs: 
+permissions:
+  contents: read
+
+jobs:
   build:
     runs-on: ubuntu-latest
-    steps: 
-      - name: Checkout code
-        use: actions/checkout@v3
- 
-      - name: Set up Rust
-        use: actions/setup-rust@v1
+    defaults:
+      run:
+        working-directory: main/hyra_merkle_test
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          rust-version: stable
+          persist-credentials: false
 
-      - name: Build
+      - name: Build the sample
         run: cargo build --release
 
-      - name: Run
-        run: cargo run
+      - name: Check the sample output against SHA-256
+        run: |
+          ./target/release/rust_proj_memory > "$RUNNER_TEMP/rust-merkle.json"
+          python3 - "$RUNNER_TEMP/rust-merkle.json" <<'PY'
+          import hashlib
+          import json
+          import sys
+          from pathlib import Path
+
+          inputs = ["Archive A❤", "Données de compression 2048"]
+          record = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+          assert record["input"] == inputs
+          assert record["hash"] == hashlib.sha256("".join(inputs).encode()).hexdigest()
+          PY
+
+      - name: Run the container smoke test
+        run: bash test.sh
