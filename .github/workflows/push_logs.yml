@@ -1,6 +1,10 @@
 name: Check Render log script
 
 on:
+  pull_request:
+    paths:
+      - '.github/workflows/push_logs.yml'
+      - 'scripts/render_log_pusher.py'
   workflow_dispatch:
 
 permissions:
@@ -16,3 +20,15 @@ jobs:
 
       - name: Check log generator syntax
         run: python3 -I -m py_compile scripts/render_log_pusher.py
+
+      - name: Exercise the generator in a temporary directory
+        working-directory: ${{ runner.temp }}
+        run: |
+          python3 -I "$GITHUB_WORKSPACE/scripts/render_log_pusher.py"
+          python3 -I - <<'PY'
+          from pathlib import Path
+
+          logs = list(Path("logs/render").glob("*.log"))
+          assert len(logs) == 1
+          assert logs[0].read_text(encoding="utf-8") == "==> RENDER  LOG SIMULED... "
+          PY

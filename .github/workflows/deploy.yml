@@ -1,6 +1,12 @@
 name: Check deployment entry points
 
 on:
+  pull_request:
+    paths:
+      - '.github/workflows/deploy.yml'
+      - 'render.yaml'
+      - 'server/retroko_fastapi_server.py'
+      - 'retroko-shell-api/main.py'
   workflow_dispatch:
 
 permissions:

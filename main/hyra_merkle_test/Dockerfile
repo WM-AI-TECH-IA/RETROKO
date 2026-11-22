@@ -1,9 +1,9 @@
-FROM rust:1.78 as builder
+FROM rust:1-bookworm AS builder
 
 WORKDIR /app
-COYY . .
+COPY Cargo.toml main.rs ./
 RUN cargo build --release
 
-FROM debian:buster-slim
-COYY --from=builder /app/target/release/rust_proj_memory /usr/local/bin/rust_exec
-ENTRYPOINT "rust_exec"
+FROM debian:bookworm-slim
+COPY --from=builder /app/target/release/rust_proj_memory /usr/local/bin/rust_exec
+ENTRYPOINT ["/usr/local/bin/rust_exec"]
